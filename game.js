@@ -5,6 +5,7 @@ class Game {
     this.score = 0;
     this.choice = '';
     this.muted = false;
+    this.shouldShowAdOnPlay = false;
 
     this.canvas = document.getElementById('gameContainer').getContext('2d');
     this.canvas.font = '24px Arial';
@@ -48,6 +49,17 @@ class Game {
 
   // Start the game
   play() {
+    if (this.shouldShowAdOnPlay) {
+      this.shouldShowAdOnPlay = false;
+
+      adBreak({
+        type: 'next',  // ad shows at start of next level
+        name: 'restart-game',
+        beforeAd: () => { this.disableButtons(); },  // You may also want to mute the game's sound.
+        afterAd: () => { this.enableButtons(); },    // resume the game flow.
+      });
+    }
+
     this.score = 0;
     this.canvas.fillText('Score: ' + this.score, 8, 26);
     this.canvas.fillText('Heads or Tails?', 66, 150);
@@ -104,6 +116,7 @@ class Game {
     this.playButton.style.display = 'inline-block';
     this.headsButton.style.display = 'none';
     this.tailsButton.style.display = 'none';
+    this.shouldShowAdOnPlay = true;
   }
 
   // Erase the canvas
@@ -111,6 +124,18 @@ class Game {
     this.canvas.fillStyle = '#ADD8E6';
     this.canvas.fillRect(0, 0, 300, 300);
     this.canvas.fillStyle = '#000000';
+  }
+
+  enableButtons() {
+    this.playButton.disabled = false;
+    this.headsButton.disabled = false;
+    this.tailsButton.disabled = false;
+  }
+
+  disableButtons() {
+    this.playButton.disabled = true;
+    this.headsButton.disabled = true;
+    this.tailsButton.disabled = true;
   }
 }
 
