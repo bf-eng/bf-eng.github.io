@@ -3,6 +3,7 @@ class Game {
   constructor() {
     // Define variables
     this.score = 0;
+    this.maxScore = 1;
     this.choice = '';
     this.muted = false;
     this.shouldShowAdOnPlay = false;
@@ -100,7 +101,11 @@ class Game {
     }
 
     if (sideUp === this.choice ) {
-      this.win(sideUp);
+      if (this.score === this.maxScore) {
+        this.beatTheGame();
+      } else {
+        this.win(sideUp);
+      }
     } else {
       this.lose(sideUp);
     }
@@ -119,6 +124,34 @@ class Game {
   lose(sideUp) {
     this.erase();
     this.canvas.fillText('Sorry, it was ' + sideUp, 50, 100);
+    this.canvas.fillText('Your score was ' + this.score, 50, 150);
+    this.canvas.fillText('Want to play again?', 45, 200);
+
+    this.playButton.style.display = 'inline-block';
+    this.headsButton.style.display = 'none';
+    this.tailsButton.style.display = 'none';
+    this.shouldShowAdOnPlay = true;
+
+    adBreak({
+      type: 'reward',  // rewarded ad
+      name: 'reward-continue',
+      beforeReward: (showAdFn) => {
+        this.showRewardedAdFn = () => { showAdFn(); };
+        // Rewarded ad available - prompt user for a rewarded ad
+        this.continueButton.style.display = 'inline-block';
+      },
+      beforeAd: () => { this.disableButtons(); },     // You may also want to mute the game's sound.
+      adDismissed: () => {
+        this.continueButton.style.display = 'none';   // Hide the reward button and continue lose flow.
+      },
+      adViewed: () => { this.continueGame(); },       // Reward granted - continue game at current score.
+      afterAd: () => { this.enableButtons(); },       // Resume the game flow.
+    });
+  }
+
+  beatTheGame() {
+    this.erase();
+    this.canvas.fillText('You Beat The Game!!!', 50, 100);
     this.canvas.fillText('Your score was ' + this.score, 50, 150);
     this.canvas.fillText('Want to play again?', 45, 200);
 
