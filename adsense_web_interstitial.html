@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6203687770003536" crossorigin="anonymous"></script>
+  <script type="common.js"></script>
+	<script src="common_adsbygoogle.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -17,14 +18,17 @@
 
     <script async
       data-ad-client="ca-pub-6203687770003536"
-      data-adbreak-test="on"
+      data-ad-frequency-hint="10s"
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6203687770003536"
       crossorigin="anonymous">
     </script>
     <script>
       window.adsbygoogle = window.adsbygoogle || [];
       const adBreak = adConfig = function(o) {adsbygoogle.push(o);}
-      adConfig({preloadAdBreaks: 'on'});
+      adConfig({preloadAdBreaks: 'on'
+                params: {
+                  google_debug_params: buildAdRequestDebugParams(159359325770)
+                }});
     </script>
     <script src="game.js"></script>
 </body>
