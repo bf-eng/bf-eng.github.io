@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="common.js"></script>
+  <script src="common.js"></script>
 	<script src="common_adsbygoogle.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -14,21 +14,22 @@
     <button id="playButton">Play</button>
     <button style="display:none" id="headsButton">Heads</button>
     <button style="display:none" id="tailsButton">Tails</button>
+    <button style="display:none" id="continueButton">Watch Ad to continue?</button>
     <button id="muteButton">Mute sound</button>
 
     <script async
       data-ad-client="ca-pub-6203687770003536"
-      data-ad-frequency-hint="10s"
+      data-ad-frequency-hint="30s"
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6203687770003536"
       crossorigin="anonymous">
     </script>
     <script>
-      window.adsbygoogle = window.adsbygoogle || [];
-      window.adsbygoogle.push({
-        params: {
-          google_debug_params: buildAdRequestDebugParams(159359325770)
-        }
-      })
+      (window.adsbygoogle = window.adsbygoogle || []).push({
+            element: document.getElementById('adslot1'),
+            params: {
+              google_debug_params: buildAdRequestDebugParams(159359325770)
+            }
+        });
       const adBreak = adConfig = function(o) {adsbygoogle.push(o);}
       adConfig({preloadAdBreaks: 'on'});
     </script>
