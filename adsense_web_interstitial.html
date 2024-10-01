@@ -24,11 +24,13 @@
     </script>
     <script>
       window.adsbygoogle = window.adsbygoogle || [];
+      window.adsbygoogle.push({
+        params: {
+          google_debug_params: buildAdRequestDebugParams(159359325770)
+        }
+      })
       const adBreak = adConfig = function(o) {adsbygoogle.push(o);}
-      adConfig({preloadAdBreaks: 'on',
-                params: {
-                  google_debug_params: buildAdRequestDebugParams(159359325770)
-                }});
+      adConfig({preloadAdBreaks: 'on'});
     </script>
     <script src="game.js"></script>
 </body>
