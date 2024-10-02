@@ -86,7 +86,7 @@ class Game {
     this.canvas.fillText('Score: ' + this.score, 8, 26);
     this.canvas.fillText('Flipping coin . . .', 60, 150);
 
-    setTimeout(() => { this.coinLanded() }, 2000);
+    setTimeout(() => { this.coinLanded() }, 50);
   }
 
   // Logic for when the coin lands
